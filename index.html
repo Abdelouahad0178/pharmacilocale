@@ -1075,22 +1075,32 @@
     <button class="scroll-top" id="scrollTop">↑</button>
 
     <!-- 🔐 CHARGEMENT SÉCURISÉ DE LA CONFIGURATION -->
-    <script src="firebase-config.js" onerror="handleConfigError()"></script>
-
-    <!-- Firebase SDK et Application -->
-    <script type="module">
-        // 🛡️ Vérification de sécurité de la configuration
+    <!-- Fonction de gestion d'erreur globale -->
+    <script>
+        // 🛡️ Fonction globale pour gérer l'absence de configuration
         function handleConfigError() {
             document.body.innerHTML = `
                 <div class="config-alert">
                     <h2>⚠️ Configuration Manquante</h2>
                     <p>Le fichier <strong>firebase-config.js</strong> est manquant ou mal configuré.</p>
                     <p>Veuillez créer ce fichier avec vos clés Firebase avant d'utiliser l'application.</p>
-                    <p><strong>Instructions :</strong> Consultez le README-Sécurité.md</p>
+                    <p><strong>Instructions :</strong></p>
+                    <ol style="text-align: left; margin-top: 1rem;">
+                        <li>Créez un fichier nommé <strong>firebase-config.js</strong></li>
+                        <li>Copiez-y vos clés Firebase</li>
+                        <li>Rechargez la page</li>
+                    </ol>
+                    <p style="margin-top: 1rem;"><strong>Besoin d'aide ?</strong> Consultez le README-Sécurité.md</p>
                 </div>
             `;
         }
+    </script>
 
+    <!-- Chargement du fichier de configuration -->
+    <script src="firebase-config.js" onerror="handleConfigError()"></script>
+
+    <!-- Firebase SDK et Application -->
+    <script type="module">
         // Vérifier que la configuration existe
         if (!window.FIREBASE_CONFIG || !window.PHARMACY_CONFIG) {
             handleConfigError();
@@ -1469,9 +1479,6 @@ Cordialement.`;
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
         };
-
-        // Rendre handleConfigError global
-        window.handleConfigError = handleConfigError;
 
         // Initialiser l'application quand le DOM est prêt
         document.addEventListener('DOMContentLoaded', () => {
