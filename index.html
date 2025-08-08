@@ -829,6 +829,29 @@
             transform: translateY(-3px);
             box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
         }
+
+        /* Alert pour configuration manquante */
+        .config-alert {
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-weight: 600;
+            border-radius: 15px;
+            margin: 2rem;
+            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .config-alert h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-alert p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
     </style>
 </head>
 <body>
@@ -1051,8 +1074,29 @@
     <!-- Scroll to top button -->
     <button class="scroll-top" id="scrollTop">↑</button>
 
-    <!-- Firebase SDK -->
+    <!-- 🔐 CHARGEMENT SÉCURISÉ DE LA CONFIGURATION -->
+    <script src="firebase-config.js" onerror="handleConfigError()"></script>
+
+    <!-- Firebase SDK et Application -->
     <script type="module">
+        // 🛡️ Vérification de sécurité de la configuration
+        function handleConfigError() {
+            document.body.innerHTML = `
+                <div class="config-alert">
+                    <h2>⚠️ Configuration Manquante</h2>
+                    <p>Le fichier <strong>firebase-config.js</strong> est manquant ou mal configuré.</p>
+                    <p>Veuillez créer ce fichier avec vos clés Firebase avant d'utiliser l'application.</p>
+                    <p><strong>Instructions :</strong> Consultez le README-Sécurité.md</p>
+                </div>
+            `;
+        }
+
+        // Vérifier que la configuration existe
+        if (!window.FIREBASE_CONFIG || !window.PHARMACY_CONFIG) {
+            handleConfigError();
+            throw new Error('Configuration Firebase manquante');
+        }
+
         // Import Firebase modules
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
         import { 
@@ -1063,34 +1107,21 @@
             orderBy 
         } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
-        // Configuration Firebase
-        const firebaseConfig = {
-            apiKey: "AIzaSyBHQSPXwED7W-FQMMs1D-OZcjW-5AP8A-w",
-            authDomain: "anapharmo.firebaseapp.com",
-            projectId: "anapharmo",
-            storageBucket: "anapharmo.appspot.com",
-            messagingSenderId: "1097322827362",
-            appId: "1:1097322827362:web:fd19a67d9af135dcbf4b3b"
-        };
+        // Utiliser la configuration depuis le fichier externe sécurisé
+        const firebaseConfig = window.FIREBASE_CONFIG;
+        const PHARMACY_CONFIG = window.PHARMACY_CONFIG;
 
-        // Configuration de la pharmacie
-        const PHARMACY_CONFIG = {
-            societeId: "EhaFrNvLHnXAqnwFMQFK", // Votre ID société
-            phoneNumber: "212661112540", // Remplacez par votre vrai numéro
-            pharmacyName: "Pharmacie Ana",
-            address: "123 Avenue Mohammed V, Agadir"
-        };
-
-        // Initialiser Firebase
+        // Initialiser Firebase avec configuration sécurisée
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
         // Variables globales
         let allMedicines = [];
 
-        // Classe principale
+        // Classe principale de l'application
         class ProfessionalPharmacy {
             constructor() {
+                console.log('🚀 Initialisation Pharmacie Ana - Configuration sécurisée');
                 this.initEventListeners();
                 this.loadMedicines();
                 this.initScrollToTop();
@@ -1329,7 +1360,7 @@
         };
 
         window.contactForParapharmacie = function() {
-            const message = `Bonjour Pharmacie Ana,
+            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 Je suis intéressé(e) par vos produits de parapharmacie.
 
@@ -1351,7 +1382,7 @@ Cordialement.`;
         };
 
         window.contactForMedicalDevices = function() {
-            const message = `Bonjour Pharmacie Ana,
+            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 Je souhaiterais me renseigner sur votre matériel médical.
 
@@ -1373,7 +1404,7 @@ Cordialement.`;
         };
 
         window.contactForMobilityAids = function() {
-            const message = `Bonjour Pharmacie Ana,
+            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 J'ai besoin d'aide concernant vos solutions d'aide aux malades.
 
@@ -1394,9 +1425,9 @@ Cordialement.`;
             window.open(whatsappUrl, '_blank');
         };
 
-        // Fonctions globales
+        // Fonctions globales pour les médicaments
         window.requestInfo = function(medicineName, price) {
-            const message = `Bonjour Pharmacie Ana,
+            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 Je souhaiterais obtenir des informations sur le médicament suivant :
 
@@ -1418,7 +1449,7 @@ Cordialement.`;
         };
 
         window.contactWhatsApp = function(medicineName, price) {
-            const message = `Bonjour Pharmacie Ana,
+            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 Je souhaiterais réserver le médicament suivant :
 
@@ -1439,9 +1470,12 @@ Cordialement.`;
             window.open(whatsappUrl, '_blank');
         };
 
-        // Initialiser l'application
+        // Rendre handleConfigError global
+        window.handleConfigError = handleConfigError;
+
+        // Initialiser l'application quand le DOM est prêt
         document.addEventListener('DOMContentLoaded', () => {
-            console.log('🚀 Pharmacie Ana - Site professionnel initialisé');
+            console.log('🚀 Pharmacie Ana - Site professionnel sécurisé initialisé');
             new ProfessionalPharmacy();
         });
 

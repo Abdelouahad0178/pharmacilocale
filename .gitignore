@@ -1,0 +1,47 @@
+# 🔐 FICHIERS DE CONFIGURATION SENSIBLES
+firebase-config.js
+config.js
+.env
+.env.local
+.env.production
+
+# 📱 Fichiers système
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 💻 Éditeurs de code
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 📦 Dépendances
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 🏗️ Build
+dist/
+build/
+.next/
+.nuxt/
+
+# 📊 Logs
+*.log
+logs/
+
+# 🔧 Cache
+.cache/
+.parcel-cache/
+
+# 📁 Dossiers temporaires
+tmp/
+temp/
+
+# 💾 Sauvegardes
+*.backup
+*.bak
+*.tmp

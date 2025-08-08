@@ -1,0 +1,6 @@
+votre-projet/
+├── index.html                    (version sécurisée)
+├── firebase-config.js           (CONFIDENTIEL - ne pas commiter)
+├── firebase-config.template.js  (template public)
+├── .gitignore                   (pour protéger les fichiers sensibles)
+└── README-Sécurité.md          (ce guide)
