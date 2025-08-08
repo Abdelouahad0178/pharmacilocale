@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💊 Pharmacie Ana - Disponibilité des Médicaments</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+
+        /* Header professionnel */
+        .header {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .brand-info h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .brand-info .tagline {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .header-contact {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.9rem;
+            color: #34495e;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+
+        /* Section Produits Attirante */
+        .products-showcase {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .products-showcase::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .showcase-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .showcase-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            line-height: 1.2;
+        }
+
+        .showcase-subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-category {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-category::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .product-category:hover::before {
+            left: 100%;
+        }
+
+        .product-category:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .category-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .product-category:hover .category-icon {
+            transform: scale(1.1) rotateY(360deg);
+        }
+
+        .product-category h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .product-category p {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .category-features {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+
+        .category-features li {
+            font-size: 0.9rem;
+            color: #34495e;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(135deg, #5a67d8, #6b46c1);
+        }
+
+        .showcase-footer {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .special-offers {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .offer-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: white;
+        }
+
+        .offer-icon {
+            font-size: 2.5rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .offer-text strong {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .offer-text small {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 3rem 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+            margin-bottom: 2rem;
+            font-weight: 400;
+        }
+
+        .search-container {
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+            background: rgba(255,255,255,0.9);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        .search-input:focus {
+            border-color: #667eea;
+            box-shadow: 0 4px 30px rgba(102, 126, 234, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bdc3c7;
+            font-size: 1.2rem;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Statistiques profesionnelles */
+        .stats-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 1.5rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            border-color: #667eea;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-number.available { color: #27ae60; }
+        .stat-number.unavailable { color: #e74c3c; }
+        .stat-number.total { color: #667eea; }
+
+        .stat-label {
+            color: #7f8c8d;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Loading et Error */
+        .loading, .error {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            margin: 2rem auto;
+            max-width: 600px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        .loading {
+            color: #667eea;
+            animation: pulse 2s infinite;
+        }
+
+        .error {
+            color: #e74c3c;
+            border-left: 4px solid #e74c3c;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        /* Grid des médicaments */
+        .medicines-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .medicine-card {
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .medicine-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border-color: #667eea;
+        }
+
+        .medicine-card.available {
+            border-left: 4px solid #27ae60;
+        }
+
+        .medicine-card.unavailable {
+            border-left: 4px solid #e74c3c;
+            opacity: 0.8;
+        }
+
+        .medicine-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .medicine-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0;
+        }
+
+        .medicine-info {
+            flex: 1;
+        }
+
+        .medicine-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 0.3rem;
+            line-height: 1.3;
+        }
+
+        .medicine-category {
+            font-size: 0.85rem;
+            color: #7f8c8d;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .availability-section {
+            margin: 1.2rem 0;
+        }
+
+        .price-availability {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .price-tag {
+            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            box-shadow: 0 3px 15px rgba(39, 174, 96, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .price-tag.unavailable {
+            background: linear-gradient(135deg, #95a5a6, #7f8c8d);
+            box-shadow: 0 3px 15px rgba(149, 165, 166, 0.3);
+        }
+
+        .availability-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.6rem 1rem;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            flex-shrink: 0;
+        }
+
+        .availability-status.available {
+            background: linear-gradient(135deg, #d5f4e6, #a8e6cf);
+            color: #27ae60;
+            border: 2px solid #27ae60;
+        }
+
+        .availability-status.unavailable {
+            background: linear-gradient(135deg, #fde8e8, #fadbd8);
+            color: #e74c3c;
+            border: 2px solid #e74c3c;
+        }
+
+        .availability-status.limited {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            color: #f39c12;
+            border: 2px solid #f39c12;
+        }
+
+        .expiry-warning {
+            margin-top: 0.8rem;
+            padding: 0.5rem 0.8rem;
+            background: rgba(255, 193, 7, 0.1);
+            border: 1px solid #ffc107;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #856404;
+            font-weight: 500;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn.primary {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn.whatsapp {
+            background: linear-gradient(135deg, #25d366, #20b858);
+            color: white;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn.whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+        }
+
+        .btn:disabled {
+            background: linear-gradient(135deg, #bdc3c7, #95a5a6);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+        }
+
+        .no-results-icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .no-results h3 {
+            font-size: 1.5rem;
+            color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            color: #95a5a6;
+            font-size: 1rem;
+        }
+
+        /* Footer professionnel */
+        .footer {
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: #ecf0f1;
+            padding: 3rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ecf0f1;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #bdc3c7;
+            text-decoration: none;
+            line-height: 1.6;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: #667eea;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #34495e;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            text-align: center;
+            color: #95a5a6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .header-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .showcase-title {
+                font-size: 2.2rem;
+            }
+
+            .showcase-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .special-offers {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .products-showcase {
+                padding: 3rem 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .medicines-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 1rem;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .price-availability {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.8rem;
+            }
+
+            .price-tag {
+                font-size: 1rem;
+                padding: 0.5rem 1rem;
+            }
+
+            main {
+                padding: 0 1rem 2rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .medicine-card {
+            animation: fadeInUp 0.6s ease forwards;
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header professionnel -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">💊</div>
+                <div class="brand-info">
+                    <h1>Pharmacie Ana</h1>
+                    <div class="tagline">Votre santé, notre priorité</div>
+                </div>
+            </div>
+            <div class="header-contact">
+                <div class="contact-item">
+                    <span>📍</span>
+                    <span>123 Avenue Mohammed V, Agadir</span>
+                </div>
+                <div class="contact-item">
+                    <span>📞</span>
+                    <span>+212 6 61 11 25 40</span>
+                </div>
+                <div class="contact-item">
+                    <span>🕒</span>
+                    <span>Ouvert 24h/24</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Produits Attirante -->
+    <section class="products-showcase">
+        <div class="showcase-container">
+            <div class="showcase-header">
+                <h2 class="showcase-title">🌟 Votre Santé, Notre Expertise</h2>
+                <p class="showcase-subtitle">Découvrez notre gamme complète de produits de santé et bien-être</p>
+            </div>
+            
+            <div class="products-grid">
+                <div class="product-category">
+                    <div class="category-icon">💊</div>
+                    <h3>Médicaments</h3>
+                    <p>Large gamme de médicaments sur ordonnance et en vente libre</p>
+                    <ul class="category-features">
+                        <li>✅ Médicaments génériques et de marque</li>
+                        <li>✅ Conseil pharmaceutique personnalisé</li>
+                        <li>✅ Disponibilité vérifiée en temps réel</li>
+                    </ul>
+                    <button class="cta-button" onclick="scrollToMedicines()">
+                        <span>🔍</span>
+                        <span>Voir les médicaments</span>
+                    </button>
+                </div>
+
+                <div class="product-category">
+                    <div class="category-icon">🧴</div>
+                    <h3>Parapharmacie</h3>
+                    <p>Produits de beauté, hygiène et soins du quotidien</p>
+                    <ul class="category-features">
+                        <li>✅ Cosmétiques et soins de la peau</li>
+                        <li>✅ Produits d'hygiène familiale</li>
+                        <li>✅ Compléments alimentaires</li>
+                    </ul>
+                    <button class="cta-button" onclick="contactForParapharmacie()">
+                        <span>🛒</span>
+                        <span>Demander catalogue</span>
+                    </button>
+                </div>
+
+                <div class="product-category">
+                    <div class="category-icon">🩺</div>
+                    <h3>Matériel Médical</h3>
+                    <p>Appareils et dispositifs médicaux pour votre santé</p>
+                    <ul class="category-features">
+                        <li>✅ Tensiomètres et thermomètres</li>
+                        <li>✅ Matériel de premiers secours</li>
+                        <li>✅ Orthèses et bandages</li>
+                    </ul>
+                    <button class="cta-button" onclick="contactForMedicalDevices()">
+                        <span>🏥</span>
+                        <span>Consulter le matériel</span>
+                    </button>
+                </div>
+
+                <div class="product-category">
+                    <div class="category-icon">♿</div>
+                    <h3>Aide aux Malades</h3>
+                    <p>Solutions pour améliorer le quotidien des patients</p>
+                    <ul class="category-features">
+                        <li>✅ Cannes et déambulateurs</li>
+                        <li>✅ Fauteuils roulants et accessoires</li>
+                        <li>✅ Matériel de rééducation</li>
+                    </ul>
+                    <button class="cta-button" onclick="contactForMobilityAids()">
+                        <span>🤝</span>
+                        <span>Besoin d'aide ?</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="showcase-footer">
+                <div class="special-offers">
+                    <div class="offer-item">
+                        <span class="offer-icon">🚚</span>
+                        <div class="offer-text">
+                            <strong>Livraison gratuite</strong>
+                            <small>à partir de 200 DH</small>
+                        </div>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-icon">⏰</span>
+                        <div class="offer-text">
+                            <strong>Service 24h/24</strong>
+                            <small>urgences pharmaceutiques</small>
+                        </div>
+                    </div>
+                    <div class="offer-item">
+                        <span class="offer-icon">💬</span>
+                        <div class="offer-text">
+                            <strong>Conseil expert</strong>
+                            <small>pharmaciens diplômés</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>🔍 Catalogue Médicaments - Disponibilité en Temps Réel</h2>
+            <p>Vérifiez instantanément la disponibilité et les prix de nos médicaments</p>
+            
+            <div class="search-container">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Rechercher un médicament..."
+                    autocomplete="off"
+                >
+                <span class="search-icon">🔍</span>
+            </div>
+        </div>
+    </section>
+
+    <main>
+        <!-- Statistiques -->
+        <section class="stats-section" id="statsSection" style="display: none;">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number total" id="totalMedicines">0</span>
+                    <span class="stat-label">Médicaments référencés</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number available" id="availableMedicines">0</span>
+                    <span class="stat-label">Disponibles actuellement</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number unavailable" id="unavailableMedicines">0</span>
+                    <span class="stat-label">Temporairement indisponibles</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number total" id="averagePrice">0 DH</span>
+                    <span class="stat-label">Prix moyen</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading -->
+        <div id="loading" class="loading">
+            <div>🔄 Chargement de notre catalogue de médicaments...</div>
+        </div>
+
+        <!-- Error -->
+        <div id="error" class="error" style="display: none;"></div>
+        
+        <!-- Grid des médicaments -->
+        <div id="medicinesContainer" class="medicines-grid">
+            <!-- Les médicaments seront affichés ici -->
+        </div>
+    </main>
+
+    <!-- Footer professionnel -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Pharmacie Ana</h3>
+                <p>Votre pharmacie de confiance depuis plus de 20 ans. Nous vous accompagnons dans tous vos besoins de santé avec professionnalisme et bienveillance.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Nos Services</h3>
+                <a href="#">Médicaments sur ordonnance</a>
+                <a href="#">Parapharmacie</a>
+                <a href="#">Conseil pharmaceutique</a>
+                <a href="#">Livraison à domicile</a>
+                <a href="#">Téléconsultation</a>
+            </div>
+            <div class="footer-section">
+                <h3>Horaires d'ouverture</h3>
+                <p>Lundi - Vendredi: 8h - 22h</p>
+                <p>Samedi: 9h - 21h</p>
+                <p>Dimanche: 10h - 20h</p>
+                <p><strong>Service d'urgence 24h/24</strong></p>
+            </div>
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <p>📍 123 Avenue Mohammed V<br>Agadir, Maroc</p>
+                <p>📞 +212 6 61 11 25 40</p>
+                <p>✉️ contact@pharmacie-ana.ma</p>
+                <p>🌐 www.pharmacie-ana.ma</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pharmacie Ana. Tous droits réservés. | Établissement pharmaceutique agrégé</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to top button -->
+    <button class="scroll-top" id="scrollTop">↑</button>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js';
+        import { 
+            getFirestore, 
+            collection, 
+            getDocs, 
+            query, 
+            orderBy 
+        } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
+
+        // Configuration Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyBHQSPXwED7W-FQMMs1D-OZcjW-5AP8A-w",
+            authDomain: "anapharmo.firebaseapp.com",
+            projectId: "anapharmo",
+            storageBucket: "anapharmo.appspot.com",
+            messagingSenderId: "1097322827362",
+            appId: "1:1097322827362:web:fd19a67d9af135dcbf4b3b"
+        };
+
+        // Configuration de la pharmacie
+        const PHARMACY_CONFIG = {
+            societeId: "EhaFrNvLHnXAqnwFMQFK", // Votre ID société
+            phoneNumber: "212661112540", // Remplacez par votre vrai numéro
+            pharmacyName: "Pharmacie Ana",
+            address: "123 Avenue Mohammed V, Agadir"
+        };
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Variables globales
+        let allMedicines = [];
+
+        // Classe principale
+        class ProfessionalPharmacy {
+            constructor() {
+                this.initEventListeners();
+                this.loadMedicines();
+                this.initScrollToTop();
+            }
+
+            initEventListeners() {
+                // Recherche en temps réel
+                const searchInput = document.getElementById('searchInput');
+                searchInput.addEventListener('input', (e) => {
+                    this.searchMedicines(e.target.value);
+                });
+
+                searchInput.addEventListener('keypress', (e) => {
+                    if (e.key === 'Enter') {
+                        this.searchMedicines(e.target.value);
+                    }
+                });
+            }
+
+            initScrollToTop() {
+                const scrollTop = document.getElementById('scrollTop');
+                
+                window.addEventListener('scroll', () => {
+                    if (window.pageYOffset > 300) {
+                        scrollTop.classList.add('visible');
+                    } else {
+                        scrollTop.classList.remove('visible');
+                    }
+                });
+
+                scrollTop.addEventListener('click', () => {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            }
+
+            async loadMedicines() {
+                const loading = document.getElementById('loading');
+                const errorDiv = document.getElementById('error');
+                const container = document.getElementById('medicinesContainer');
+                const statsSection = document.getElementById('statsSection');
+
+                try {
+                    loading.style.display = 'block';
+                    errorDiv.style.display = 'none';
+                    container.innerHTML = '';
+                    statsSection.style.display = 'none';
+                    
+                    console.log('🔄 Chargement des médicaments...');
+                    
+                    const stockRef = collection(db, "societe", PHARMACY_CONFIG.societeId, "stock");
+                    const q = query(stockRef, orderBy("nom"));
+                    
+                    const snapshot = await getDocs(q);
+                    allMedicines = [];
+                    
+                    snapshot.forEach((doc) => {
+                        const data = doc.data();
+                        allMedicines.push({
+                            id: doc.id,
+                            nom: data.nom || 'Médicament',
+                            quantite: data.quantite || 0,
+                            prixVente: data.prixVente || 0,
+                            seuil: data.seuil || 5,
+                            datePeremption: data.datePeremption || null,
+                            disponible: (data.quantite || 0) > 0,
+                            stockLimite: (data.quantite || 0) > 0 && (data.quantite || 0) <= (data.seuil || 5)
+                        });
+                    });
+
+                    console.log(`✅ ${allMedicines.length} médicaments chargés`);
+                    
+                    if (allMedicines.length === 0) {
+                        this.showError('🔍 Aucun médicament trouvé dans notre catalogue.');
+                        return;
+                    }
+                    
+                    this.updateStats();
+                    this.displayMedicines(allMedicines);
+                    statsSection.style.display = 'block';
+                    
+                } catch (error) {
+                    console.error('❌ Erreur:', error);
+                    if (error.code === 'permission-denied') {
+                        this.showError('🔒 Accès temporairement indisponible. Veuillez réessayer plus tard.');
+                    } else {
+                        this.showError(`❌ Erreur de connexion: ${error.message}`);
+                    }
+                } finally {
+                    loading.style.display = 'none';
+                }
+            }
+
+            updateStats() {
+                const total = allMedicines.length;
+                const available = allMedicines.filter(med => med.disponible).length;
+                const unavailable = total - available;
+                
+                // Calculer le prix moyen des médicaments disponibles
+                const availableMeds = allMedicines.filter(med => med.disponible && med.prixVente > 0);
+                const averagePrice = availableMeds.length > 0 
+                    ? (availableMeds.reduce((sum, med) => sum + med.prixVente, 0) / availableMeds.length).toFixed(2)
+                    : 0;
+
+                document.getElementById('totalMedicines').textContent = total;
+                document.getElementById('availableMedicines').textContent = available;
+                document.getElementById('unavailableMedicines').textContent = unavailable;
+                document.getElementById('averagePrice').textContent = `${averagePrice} DH`;
+            }
+
+            displayMedicines(medicines) {
+                const container = document.getElementById('medicinesContainer');
+                
+                if (medicines.length === 0) {
+                    container.innerHTML = `
+                        <div class="no-results">
+                            <div class="no-results-icon">🔍</div>
+                            <h3>Aucun médicament trouvé</h3>
+                            <p>Essayez une autre recherche ou contactez-nous directement</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Trier par disponibilité puis par nom
+                const sortedMedicines = [...medicines].sort((a, b) => {
+                    if (a.disponible !== b.disponible) {
+                        return b.disponible - a.disponible;
+                    }
+                    return a.nom.localeCompare(b.nom);
+                });
+
+                container.innerHTML = sortedMedicines.map((medicine, index) => {
+                    const animationDelay = (index * 0.05).toFixed(2);
+                    return this.createMedicineCard(medicine, animationDelay);
+                }).join('');
+            }
+
+            createMedicineCard(medicine, animationDelay = 0) {
+                const expiryDate = medicine.datePeremption ? new Date(medicine.datePeremption) : null;
+                const isExpiringSoon = expiryDate && (expiryDate - new Date()) <= (30 * 24 * 60 * 60 * 1000);
+                
+                let statusClass = 'unavailable';
+                let statusText = 'Non disponible';
+                let statusIcon = '❌';
+                
+                if (medicine.disponible) {
+                    if (medicine.stockLimite) {
+                        statusClass = 'limited';
+                        statusText = 'Stock limité';
+                        statusIcon = '⚠️';
+                    } else {
+                        statusClass = 'available';
+                        statusText = 'Disponible';
+                        statusIcon = '✅';
+                    }
+                }
+                
+                const displayPrice = medicine.prixVente > 0 ? `${medicine.prixVente.toFixed(2)} DH` : 'Prix sur demande';
+                
+                return `
+                    <div class="medicine-card ${statusClass}" style="animation-delay: ${animationDelay}s">
+                        <div class="medicine-header">
+                            <div class="medicine-icon">💊</div>
+                            <div class="medicine-info">
+                                <div class="medicine-name">${medicine.nom}</div>
+                                <div class="medicine-category">Médicament</div>
+                            </div>
+                        </div>
+                        
+                        <div class="availability-section">
+                            <div class="price-availability">
+                                <div class="price-tag ${!medicine.disponible ? 'unavailable' : ''}">
+                                    <span>💰</span>
+                                    <span>${displayPrice}</span>
+                                </div>
+                                <div class="availability-status ${statusClass}">
+                                    <span>${statusIcon}</span>
+                                    <span>${statusText}</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        ${isExpiringSoon ? `
+                            <div class="expiry-warning">
+                                ⚠️ Disponibilité limitée dans le temps
+                            </div>
+                        ` : ''}
+                        
+                        <div class="action-buttons">
+                            <button 
+                                class="btn primary" 
+                                onclick="requestInfo('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}')"
+                            >
+                                <span>ℹ️</span>
+                                <span>Demander infos</span>
+                            </button>
+                            <button 
+                                class="btn whatsapp" 
+                                onclick="contactWhatsApp('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}')"
+                                ${!medicine.disponible ? 'disabled' : ''}
+                            >
+                                <span>📱</span>
+                                <span>WhatsApp</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }
+
+            searchMedicines(searchTerm) {
+                if (!searchTerm.trim()) {
+                    this.displayMedicines(allMedicines);
+                    return;
+                }
+
+                const filtered = allMedicines.filter(medicine =>
+                    medicine.nom.toLowerCase().includes(searchTerm.toLowerCase())
+                );
+                
+                this.displayMedicines(filtered);
+            }
+
+            showError(message) {
+                const errorDiv = document.getElementById('error');
+                errorDiv.innerHTML = message;
+                errorDiv.style.display = 'block';
+            }
+        }
+
+        // Fonctions pour la section produits
+        window.scrollToMedicines = function() {
+            document.querySelector('.hero').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+            });
+        };
+
+        window.contactForParapharmacie = function() {
+            const message = `Bonjour Pharmacie Ana,
+
+Je suis intéressé(e) par vos produits de parapharmacie.
+
+🧴 **Demande de catalogue parapharmacie**
+
+Pourriez-vous me renseigner sur :
+- 🧴 Produits cosmétiques et soins de la peau
+- 🧼 Produits d'hygiène familiale  
+- 💊 Compléments alimentaires
+- 💰 Gammes de prix disponibles
+- 📋 Conseils personnalisés
+
+Merci d'avance pour votre réponse.
+
+Cordialement.`;
+
+            const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+
+        window.contactForMedicalDevices = function() {
+            const message = `Bonjour Pharmacie Ana,
+
+Je souhaiterais me renseigner sur votre matériel médical.
+
+🩺 **Demande d'informations - Matériel médical**
+
+Pourriez-vous me renseigner sur :
+- 🩺 Tensiomètres et thermomètres
+- 🏥 Matériel de premiers secours
+- 🩹 Orthèses et bandages
+- 💰 Prix et disponibilité
+- 📋 Conseils d'utilisation
+
+Je cherche du matériel de qualité pour usage personnel/familial.
+
+Cordialement.`;
+
+            const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+
+        window.contactForMobilityAids = function() {
+            const message = `Bonjour Pharmacie Ana,
+
+J'ai besoin d'aide concernant vos solutions d'aide aux malades.
+
+♿ **Demande de conseil - Aide à la mobilité**
+
+Pourriez-vous me renseigner sur :
+- 🦯 Cannes et déambulateurs
+- ♿ Fauteuils roulants et accessoires
+- 🏥 Matériel de rééducation
+- 💰 Options de financement/location
+- 🤝 Conseils personnalisés selon les besoins
+
+Une situation nécessite une solution adaptée.
+
+Cordialement.`;
+
+            const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+
+        // Fonctions globales
+        window.requestInfo = function(medicineName, price) {
+            const message = `Bonjour Pharmacie Ana,
+
+Je souhaiterais obtenir des informations sur le médicament suivant :
+
+💊 **${medicineName}**
+💰 **Prix affiché : ${price}**
+
+Pourriez-vous me renseigner sur :
+- ✅ Sa disponibilité actuelle
+- 📋 Les modalités de délivrance (ordonnance requise ?)
+- ⏰ Les délais si commande nécessaire
+- 🏪 Modalités de retrait
+
+Merci d'avance pour votre réponse.
+
+Cordialement.`;
+
+            const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+
+        window.contactWhatsApp = function(medicineName, price) {
+            const message = `Bonjour Pharmacie Ana,
+
+Je souhaiterais réserver le médicament suivant :
+
+💊 **${medicineName}**
+💰 **Prix : ${price}**
+
+Merci de me confirmer :
+- ✅ Disponibilité immédiate
+- 🏪 Modalités de retrait
+- ⏰ Heure de disponibilité
+- 📋 Documents nécessaires
+
+Je me présenterai en pharmacie pour le retrait.
+
+Cordialement.`;
+
+            const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        };
+
+        // Initialiser l'application
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('🚀 Pharmacie Ana - Site professionnel initialisé');
+            new ProfessionalPharmacy();
+        });
+
+    </script>
+</body>
+</html>
