@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-JX6HCRX075"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-JX6HCRX075');
+    </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>💊 Pharmacie Ana - Disponibilité des Médicaments</title>
+    <meta name="description" content="Pharmacie Ana - Votre pharmacie de confiance à Agadir. Disponibilité des médicaments en temps réel, conseil pharmaceutique expert, service 24h/24.">
+    <meta name="keywords" content="pharmacie, médicaments, Agadir, santé, parapharmacie, conseil pharmaceutique">
+    <title>💊 Pharmacie Ana - Disponibilité des Médicaments en Temps Réel</title>
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,19 +27,36 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --success-color: #27ae60;
+            --warning-color: #f39c12;
+            --danger-color: #e74c3c;
+            --text-primary: #2c3e50;
+            --text-secondary: #7f8c8d;
+            --white-alpha: rgba(255, 255, 255, 0.95);
+            --shadow-light: 0 4px 20px rgba(0,0,0,0.06);
+            --shadow-medium: 0 8px 32px rgba(0,0,0,0.08);
+            --shadow-heavy: 0 20px 60px rgba(0,0,0,0.15);
+            --border-radius: 16px;
+            --border-radius-xl: 20px;
+            --transition: all 0.3s ease;
+        }
+
         body {
             font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #2c3e50;
+            background: var(--primary-gradient);
+            color: var(--text-primary);
             min-height: 100vh;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         /* Header professionnel */
         .header {
-            background: rgba(255, 255, 255, 0.98);
+            background: var(--white-alpha);
             backdrop-filter: blur(20px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-medium);
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -35,7 +64,7 @@
         }
 
         .header-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 1.5rem 2rem;
             display: flex;
@@ -54,25 +83,31 @@
         .logo {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 2rem;
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .brand-info h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #2c3e50;
+            font-size: 1.9rem;
+            font-weight: 900;
+            color: var(--text-primary);
             margin: 0;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .brand-info .tagline {
             font-size: 0.9rem;
-            color: #7f8c8d;
+            color: var(--text-secondary);
             font-weight: 500;
             margin-top: 2px;
         }
@@ -90,11 +125,27 @@
             align-items: center;
             gap: 0.5rem;
             font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .contact-item:hover {
+            color: #667eea;
+            transform: translateY(-1px);
+        }
+
+        /* Navigation mobile */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
         }
 
         /* Section Produits Attirante */
         .products-showcase {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: var(--primary-gradient);
             padding: 4rem 2rem;
             position: relative;
             overflow: hidden;
@@ -112,12 +163,12 @@
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(2deg); }
         }
 
         .showcase-container {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             z-index: 2;
@@ -129,8 +180,8 @@
         }
 
         .showcase-title {
-            font-size: 3rem;
-            font-weight: 800;
+            font-size: clamp(2.5rem, 5vw, 3.2rem);
+            font-weight: 900;
             color: white;
             margin-bottom: 1rem;
             text-shadow: 0 2px 10px rgba(0,0,0,0.2);
@@ -138,7 +189,7 @@
         }
 
         .showcase-subtitle {
-            font-size: 1.3rem;
+            font-size: clamp(1.1rem, 2.5vw, 1.3rem);
             color: rgba(255, 255, 255, 0.9);
             font-weight: 400;
             max-width: 600px;
@@ -147,20 +198,21 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             margin-bottom: 4rem;
         }
 
         .product-category {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--white-alpha);
+            border-radius: var(--border-radius-xl);
+            padding: 2.5rem;
             text-align: center;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow-light);
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
+            border: 2px solid transparent;
         }
 
         .product-category::before {
@@ -171,7 +223,7 @@
             width: 100%;
             height: 100%;
             background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
+            transition: left 0.6s;
         }
 
         .product-category:hover::before {
@@ -180,37 +232,39 @@
 
         .product-category:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: var(--shadow-heavy);
+            border-color: rgba(255,255,255,0.3);
         }
 
         .category-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 90px;
+            height: 90px;
+            background: var(--primary-gradient);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin: 0 auto 1.5rem;
             box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
-            transition: transform 0.3s ease;
+            transition: var(--transition);
         }
 
         .product-category:hover .category-icon {
             transform: scale(1.1) rotateY(360deg);
+            box-shadow: 0 12px 35px rgba(102, 126, 234, 0.4);
         }
 
         .product-category h3 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: #2c3e50;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-primary);
             margin-bottom: 1rem;
         }
 
         .product-category p {
             font-size: 1rem;
-            color: #7f8c8d;
+            color: var(--text-secondary);
             margin-bottom: 1.5rem;
             line-height: 1.6;
         }
@@ -225,26 +279,31 @@
         .category-features li {
             font-size: 0.9rem;
             color: #34495e;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.6rem;
             font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .cta-button {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
             border: none;
-            padding: 1rem 2rem;
+            padding: 1.2rem 2rem;
             border-radius: 50px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 1rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
             width: 100%;
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         .cta-button:hover {
@@ -253,17 +312,21 @@
             background: linear-gradient(135deg, #5a67d8, #6b46c1);
         }
 
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
         .showcase-footer {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 2rem;
+            border-radius: var(--border-radius-xl);
+            padding: 2.5rem;
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .special-offers {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 2rem;
             align-items: center;
         }
@@ -271,14 +334,19 @@
         .offer-item {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.2rem;
             color: white;
+            transition: var(--transition);
+        }
+
+        .offer-item:hover {
+            transform: translateY(-3px);
         }
 
         .offer-icon {
-            font-size: 2.5rem;
-            width: 60px;
-            height: 60px;
+            font-size: 2.8rem;
+            width: 70px;
+            height: 70px;
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
             display: flex;
@@ -289,126 +357,169 @@
 
         .offer-text strong {
             display: block;
-            font-size: 1.1rem;
-            font-weight: 700;
+            font-size: 1.2rem;
+            font-weight: 800;
             margin-bottom: 0.2rem;
         }
 
         .offer-text small {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             opacity: 0.9;
         }
 
         /* Hero Section */
         .hero {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem 2rem;
+            background: var(--white-alpha);
+            padding: 4rem 2rem;
             text-align: center;
             margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
         }
 
         .hero h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #2c3e50;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 900;
+            color: var(--text-primary);
             margin-bottom: 1rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #7f8c8d;
-            margin-bottom: 2rem;
+            font-size: clamp(1rem, 2vw, 1.2rem);
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
             font-weight: 400;
         }
 
         .search-container {
-            max-width: 500px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
         }
 
         .search-input {
             width: 100%;
-            padding: 1rem 1.5rem;
-            border: 2px solid #e9ecef;
+            padding: 1.2rem 1.8rem;
+            border: 3px solid #e9ecef;
             border-radius: 50px;
             font-size: 1.1rem;
             outline: none;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             background: rgba(255,255,255,0.9);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            box-shadow: var(--shadow-light);
+            font-weight: 500;
         }
 
         .search-input:focus {
             border-color: #667eea;
             box-shadow: 0 4px 30px rgba(102, 126, 234, 0.2);
             transform: translateY(-2px);
+            background: white;
         }
 
         .search-icon {
             position: absolute;
-            right: 20px;
+            right: 25px;
             top: 50%;
             transform: translateY(-50%);
             color: #bdc3c7;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
+            pointer-events: none;
         }
 
         /* Main Content */
         main {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             padding: 0 2rem 4rem;
         }
 
         /* Statistiques profesionnelles */
         .stats-section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 2rem;
+            background: var(--white-alpha);
+            border-radius: var(--border-radius-xl);
+            padding: 2.5rem;
             margin-bottom: 3rem;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-medium);
+            backdrop-filter: blur(10px);
+        }
+
+        .stats-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .stats-header h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stats-header p {
+            color: var(--text-secondary);
+            font-size: 1rem;
         }
 
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
             gap: 2rem;
         }
 
         .stat-item {
             text-align: center;
-            padding: 1.5rem;
-            border-radius: 15px;
+            padding: 2rem 1.5rem;
+            border-radius: var(--border-radius);
             background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary-gradient);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover::before {
+            transform: scaleX(1);
         }
 
         .stat-item:hover {
             border-color: #667eea;
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.15);
         }
 
         .stat-number {
             display: block;
-            font-size: 2.2rem;
-            font-weight: 800;
+            font-size: 2.5rem;
+            font-weight: 900;
             margin-bottom: 0.5rem;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.1);
         }
 
-        .stat-number.available { color: #27ae60; }
-        .stat-number.unavailable { color: #e74c3c; }
+        .stat-number.available { color: var(--success-color); }
+        .stat-number.unavailable { color: var(--danger-color); }
         .stat-number.total { color: #667eea; }
+        .stat-number.warning { color: var(--warning-color); }
 
         .stat-label {
-            color: #7f8c8d;
+            color: var(--text-secondary);
             font-weight: 600;
             font-size: 0.95rem;
             text-transform: uppercase;
@@ -418,13 +529,13 @@
         /* Loading et Error */
         .loading, .error {
             text-align: center;
-            padding: 3rem;
+            padding: 4rem 2rem;
             font-size: 1.2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
+            background: var(--white-alpha);
+            border-radius: var(--border-radius-xl);
             margin: 2rem auto;
             max-width: 600px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            box-shadow: var(--shadow-medium);
         }
 
         .loading {
@@ -432,9 +543,24 @@
             animation: pulse 2s infinite;
         }
 
+        .loading .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         .error {
-            color: #e74c3c;
-            border-left: 4px solid #e74c3c;
+            color: var(--danger-color);
+            border-left: 5px solid var(--danger-color);
         }
 
         @keyframes pulse {
@@ -445,54 +571,69 @@
         /* Grid des médicaments */
         .medicines-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
             margin-top: 2rem;
         }
 
         .medicine-card {
-            background: rgba(255, 255, 255, 0.98);
-            border-radius: 16px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            background: var(--white-alpha);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-light);
             border: 2px solid transparent;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             position: relative;
             overflow: hidden;
         }
 
+        .medicine-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #e9ecef, #e9ecef);
+            transition: var(--transition);
+        }
+
+        .medicine-card.available::before {
+            background: linear-gradient(90deg, var(--success-color), #2ecc71);
+        }
+
+        .medicine-card.unavailable::before {
+            background: linear-gradient(90deg, var(--danger-color), #c0392b);
+        }
+
+        .medicine-card.limited::before {
+            background: linear-gradient(90deg, var(--warning-color), #e67e22);
+        }
+
         .medicine-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
             border-color: #667eea;
-        }
-
-        .medicine-card.available {
-            border-left: 4px solid #27ae60;
-        }
-
-        .medicine-card.unavailable {
-            border-left: 4px solid #e74c3c;
-            opacity: 0.8;
         }
 
         .medicine-header {
             display: flex;
             align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1rem;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         .medicine-icon {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border-radius: 12px;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             flex-shrink: 0;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .medicine-info {
@@ -500,23 +641,27 @@
         }
 
         .medicine-name {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: #2c3e50;
-            margin-bottom: 0.3rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
             line-height: 1.3;
         }
 
         .medicine-category {
             font-size: 0.85rem;
-            color: #7f8c8d;
-            font-weight: 500;
+            color: var(--text-secondary);
+            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.5px;
+            background: #f8f9fa;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            display: inline-block;
         }
 
         .availability-section {
-            margin: 1.2rem 0;
+            margin: 1.5rem 0;
         }
 
         .price-availability {
@@ -524,35 +669,36 @@
             justify-content: space-between;
             align-items: center;
             gap: 1rem;
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             flex-wrap: wrap;
         }
 
         .price-tag {
-            background: linear-gradient(135deg, #27ae60, #2ecc71);
+            background: linear-gradient(135deg, var(--success-color), #2ecc71);
             color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            box-shadow: 0 3px 15px rgba(39, 174, 96, 0.3);
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 20px rgba(39, 174, 96, 0.3);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
         }
 
         .price-tag.unavailable {
             background: linear-gradient(135deg, #95a5a6, #7f8c8d);
-            box-shadow: 0 3px 15px rgba(149, 165, 166, 0.3);
+            box-shadow: 0 4px 20px rgba(149, 165, 166, 0.3);
         }
 
         .availability-status {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
-            padding: 0.6rem 1rem;
+            padding: 0.8rem 1.2rem;
             border-radius: 25px;
-            font-weight: 600;
+            font-weight: 700;
             font-size: 0.9rem;
             text-transform: uppercase;
             letter-spacing: 0.5px;
@@ -561,64 +707,77 @@
 
         .availability-status.available {
             background: linear-gradient(135deg, #d5f4e6, #a8e6cf);
-            color: #27ae60;
-            border: 2px solid #27ae60;
+            color: var(--success-color);
+            border: 2px solid var(--success-color);
         }
 
         .availability-status.unavailable {
             background: linear-gradient(135deg, #fde8e8, #fadbd8);
-            color: #e74c3c;
-            border: 2px solid #e74c3c;
+            color: var(--danger-color);
+            border: 2px solid var(--danger-color);
         }
 
         .availability-status.limited {
             background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            color: #f39c12;
-            border: 2px solid #f39c12;
+            color: var(--warning-color);
+            border: 2px solid var(--warning-color);
+        }
+
+        .stock-info {
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.2);
+            border-radius: 10px;
+            padding: 0.8rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #5a67d8;
+            font-weight: 500;
         }
 
         .expiry-warning {
-            margin-top: 0.8rem;
-            padding: 0.5rem 0.8rem;
+            margin-top: 1rem;
+            padding: 0.8rem 1rem;
             background: rgba(255, 193, 7, 0.1);
-            border: 1px solid #ffc107;
-            border-radius: 8px;
+            border: 2px solid #ffc107;
+            border-radius: 10px;
             font-size: 0.85rem;
             color: #856404;
-            font-weight: 500;
+            font-weight: 600;
         }
 
         .action-buttons {
             display: flex;
-            gap: 0.8rem;
-            margin-top: 1.2rem;
+            gap: 1rem;
+            margin-top: 1.5rem;
         }
 
         .btn {
             flex: 1;
-            padding: 0.8rem 1rem;
+            padding: 1rem 1.5rem;
             border: none;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.95rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 0.5rem;
             text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.3px;
         }
 
         .btn.primary {
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
             box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
 
         .btn.primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
         }
 
         .btn.whatsapp {
@@ -628,8 +787,8 @@
         }
 
         .btn.whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
         }
 
         .btn:disabled {
@@ -637,77 +796,238 @@
             cursor: not-allowed;
             transform: none;
             box-shadow: none;
+            opacity: 0.6;
         }
 
         .no-results {
             text-align: center;
-            padding: 4rem 2rem;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            padding: 5rem 2rem;
+            background: var(--white-alpha);
+            border-radius: var(--border-radius-xl);
+            box-shadow: var(--shadow-medium);
         }
 
         .no-results-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+            font-size: 5rem;
+            margin-bottom: 1.5rem;
             opacity: 0.5;
         }
 
         .no-results h3 {
-            font-size: 1.5rem;
-            color: #7f8c8d;
+            font-size: 1.8rem;
+            color: var(--text-secondary);
             margin-bottom: 1rem;
+            font-weight: 700;
         }
 
         .no-results p {
             color: #95a5a6;
-            font-size: 1rem;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .retry-button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .retry-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.3);
         }
 
         /* Footer professionnel */
         .footer {
             background: linear-gradient(135deg, #2c3e50, #34495e);
             color: #ecf0f1;
-            padding: 3rem 2rem 2rem;
+            padding: 4rem 2rem 2rem;
             margin-top: 4rem;
         }
 
         .footer-content {
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
         }
 
         .footer-section h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
             color: #ecf0f1;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary-gradient);
+            border-radius: 2px;
         }
 
         .footer-section p, .footer-section a {
             color: #bdc3c7;
             text-decoration: none;
             line-height: 1.6;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             display: block;
+            transition: var(--transition);
         }
 
         .footer-section a:hover {
             color: #667eea;
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-link:hover {
+            background: var(--primary-gradient);
+            transform: translateY(-3px);
         }
 
         .footer-bottom {
             border-top: 1px solid #34495e;
-            margin-top: 2rem;
+            margin-top: 3rem;
             padding-top: 2rem;
             text-align: center;
             color: #95a5a6;
         }
 
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+            transition: var(--transition);
+            opacity: 0;
+            visibility: hidden;
+            z-index: 1000;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Alert pour configuration manquante */
+        .config-alert {
+            background: linear-gradient(135deg, var(--danger-color), #c0392b);
+            color: white;
+            padding: 3rem;
+            text-align: center;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            margin: 2rem;
+            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        .config-alert h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .config-alert p {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Filtres */
+        .filters-section {
+            background: var(--white-alpha);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow-light);
+        }
+
+        .filters-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.9rem;
+        }
+
+        .filter-select {
+            padding: 0.8rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            background: white;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+
+        .filter-select:focus {
+            border-color: #667eea;
+            outline: none;
+        }
+
         /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-content {
+                gap: 1.5rem;
+            }
+            
+            .medicines-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+        }
+
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -720,12 +1040,12 @@
                 gap: 1rem;
             }
 
-            .showcase-title {
-                font-size: 2.2rem;
+            .mobile-menu-btn {
+                display: block;
             }
 
-            .showcase-subtitle {
-                font-size: 1.1rem;
+            .showcase-title {
+                font-size: 2.2rem;
             }
 
             .products-grid {
@@ -743,22 +1063,13 @@
                 padding: 3rem 1rem;
             }
 
-            .hero h2 {
-                font-size: 2rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
             .medicines-grid {
                 grid-template-columns: 1fr;
-                gap: 1rem;
+                gap: 1.5rem;
             }
 
             .stats-grid {
                 grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-                gap: 1rem;
             }
 
             .action-buttons {
@@ -768,16 +1079,23 @@
             .price-availability {
                 flex-direction: column;
                 align-items: flex-start;
-                gap: 0.8rem;
-            }
-
-            .price-tag {
-                font-size: 1rem;
-                padding: 0.5rem 1rem;
+                gap: 1rem;
             }
 
             main {
                 padding: 0 1rem 2rem;
+            }
+
+            .scroll-top {
+                bottom: 1rem;
+                right: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+
+            .filters-grid {
+                grid-template-columns: 1fr;
             }
         }
 
@@ -793,6 +1111,17 @@
             }
         }
 
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
         .medicine-card {
             animation: fadeInUp 0.6s ease forwards;
         }
@@ -801,56 +1130,37 @@
             animation: fadeInUp 0.8s ease forwards;
         }
 
-        /* Scroll to top button */
-        .scroll-top {
+        .slide-in {
+            animation: slideInLeft 0.8s ease forwards;
+        }
+
+        /* Notification Toast */
+        .toast {
             position: fixed;
-            bottom: 2rem;
+            top: 100px;
             right: 2rem;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
+            background: var(--primary-gradient);
             color: white;
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.2rem;
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
             box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
+            z-index: 10000;
             opacity: 0;
-            visibility: hidden;
+            transform: translateX(100%);
+            transition: var(--transition);
         }
 
-        .scroll-top.visible {
+        .toast.show {
             opacity: 1;
-            visibility: visible;
+            transform: translateX(0);
         }
 
-        .scroll-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 25px rgba(102, 126, 234, 0.4);
+        .toast.success {
+            background: linear-gradient(135deg, var(--success-color), #2ecc71);
         }
 
-        /* Alert pour configuration manquante */
-        .config-alert {
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            font-weight: 600;
-            border-radius: 15px;
-            margin: 2rem;
-            box-shadow: 0 8px 30px rgba(231, 76, 60, 0.3);
-            animation: pulse 2s infinite;
-        }
-
-        .config-alert h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1rem;
-        }
-
-        .config-alert p {
-            font-size: 1.1rem;
-            margin-bottom: 0.5rem;
+        .toast.error {
+            background: linear-gradient(135deg, var(--danger-color), #c0392b);
         }
     </style>
 </head>
@@ -879,6 +1189,7 @@
                     <span>Ouvert 24h/24</span>
                 </div>
             </div>
+            <button class="mobile-menu-btn">☰</button>
         </div>
     </header>
 
@@ -887,18 +1198,19 @@
         <div class="showcase-container">
             <div class="showcase-header">
                 <h2 class="showcase-title">🌟 Votre Santé, Notre Expertise</h2>
-                <p class="showcase-subtitle">Découvrez notre gamme complète de produits de santé et bien-être</p>
+                <p class="showcase-subtitle">Découvrez notre gamme complète de produits de santé et bien-être avec un service professionnel d'exception</p>
             </div>
             
             <div class="products-grid">
                 <div class="product-category">
                     <div class="category-icon">💊</div>
                     <h3>Médicaments</h3>
-                    <p>Large gamme de médicaments sur ordonnance et en vente libre</p>
+                    <p>Large gamme de médicaments sur ordonnance et en vente libre, disponibilité vérifiée en temps réel</p>
                     <ul class="category-features">
                         <li>✅ Médicaments génériques et de marque</li>
                         <li>✅ Conseil pharmaceutique personnalisé</li>
                         <li>✅ Disponibilité vérifiée en temps réel</li>
+                        <li>✅ Prix transparents et compétitifs</li>
                     </ul>
                     <button class="cta-button" onclick="scrollToMedicines()">
                         <span>🔍</span>
@@ -909,11 +1221,12 @@
                 <div class="product-category">
                     <div class="category-icon">🧴</div>
                     <h3>Parapharmacie</h3>
-                    <p>Produits de beauté, hygiène et soins du quotidien</p>
+                    <p>Produits de beauté, hygiène et soins du quotidien des meilleures marques</p>
                     <ul class="category-features">
                         <li>✅ Cosmétiques et soins de la peau</li>
                         <li>✅ Produits d'hygiène familiale</li>
                         <li>✅ Compléments alimentaires</li>
+                        <li>✅ Produits bio et naturels</li>
                     </ul>
                     <button class="cta-button" onclick="contactForParapharmacie()">
                         <span>🛒</span>
@@ -924,11 +1237,12 @@
                 <div class="product-category">
                     <div class="category-icon">🩺</div>
                     <h3>Matériel Médical</h3>
-                    <p>Appareils et dispositifs médicaux pour votre santé</p>
+                    <p>Appareils et dispositifs médicaux certifiés pour votre santé et surveillance</p>
                     <ul class="category-features">
                         <li>✅ Tensiomètres et thermomètres</li>
                         <li>✅ Matériel de premiers secours</li>
                         <li>✅ Orthèses et bandages</li>
+                        <li>✅ Équipements de diagnostic</li>
                     </ul>
                     <button class="cta-button" onclick="contactForMedicalDevices()">
                         <span>🏥</span>
@@ -939,11 +1253,12 @@
                 <div class="product-category">
                     <div class="category-icon">♿</div>
                     <h3>Aide aux Malades</h3>
-                    <p>Solutions pour améliorer le quotidien des patients</p>
+                    <p>Solutions adaptées pour améliorer le quotidien et l'autonomie des patients</p>
                     <ul class="category-features">
                         <li>✅ Cannes et déambulateurs</li>
                         <li>✅ Fauteuils roulants et accessoires</li>
                         <li>✅ Matériel de rééducation</li>
+                        <li>✅ Aide au maintien à domicile</li>
                     </ul>
                     <button class="cta-button" onclick="contactForMobilityAids()">
                         <span>🤝</span>
@@ -958,7 +1273,7 @@
                         <span class="offer-icon">🚚</span>
                         <div class="offer-text">
                             <strong>Livraison gratuite</strong>
-                            <small>à partir de 200 DH</small>
+                            <small>à partir de 200 DH dans Agadir</small>
                         </div>
                     </div>
                     <div class="offer-item">
@@ -975,6 +1290,13 @@
                             <small>pharmaciens diplômés</small>
                         </div>
                     </div>
+                    <div class="offer-item">
+                        <span class="offer-icon">🎯</span>
+                        <div class="offer-text">
+                            <strong>Satisfaction garantie</strong>
+                            <small>service client dédié</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -984,14 +1306,14 @@
     <section class="hero">
         <div class="hero-content">
             <h2>🔍 Catalogue Médicaments - Disponibilité en Temps Réel</h2>
-            <p>Vérifiez instantanément la disponibilité et les prix de nos médicaments</p>
+            <p>Vérifiez instantanément la disponibilité et les prix de nos médicaments. Base de données mise à jour en continu par nos pharmaciens</p>
             
             <div class="search-container">
                 <input 
                     type="text" 
                     id="searchInput" 
                     class="search-input" 
-                    placeholder="Rechercher un médicament..."
+                    placeholder="Rechercher un médicament par nom..."
                     autocomplete="off"
                 >
                 <span class="search-icon">🔍</span>
@@ -1000,8 +1322,51 @@
     </section>
 
     <main>
+        <!-- Filtres -->
+        <section class="filters-section" id="filtersSection" style="display: none;">
+            <div class="filters-grid">
+                <div class="filter-group">
+                    <label class="filter-label">Disponibilité</label>
+                    <select id="availabilityFilter" class="filter-select">
+                        <option value="all">Tous les médicaments</option>
+                        <option value="available">Disponibles uniquement</option>
+                        <option value="unavailable">Non disponibles</option>
+                        <option value="limited">Stock limité</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Trier par</label>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="name">Nom (A-Z)</option>
+                        <option value="name-desc">Nom (Z-A)</option>
+                        <option value="price">Prix croissant</option>
+                        <option value="price-desc">Prix décroissant</option>
+                        <option value="availability">Disponibilité</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label">Prix maximum</label>
+                    <select id="priceFilter" class="filter-select">
+                        <option value="all">Tous les prix</option>
+                        <option value="50">Moins de 50 DH</option>
+                        <option value="100">Moins de 100 DH</option>
+                        <option value="200">Moins de 200 DH</option>
+                        <option value="500">Moins de 500 DH</option>
+                    </select>
+                </div>
+                <button class="cta-button" onclick="clearFilters()">
+                    <span>🔄</span>
+                    <span>Réinitialiser</span>
+                </button>
+            </div>
+        </section>
+
         <!-- Statistiques -->
         <section class="stats-section" id="statsSection" style="display: none;">
+            <div class="stats-header">
+                <h3>📊 Statistiques de Notre Catalogue</h3>
+                <p>Données mises à jour en temps réel</p>
+            </div>
             <div class="stats-grid">
                 <div class="stat-item">
                     <span class="stat-number total" id="totalMedicines">0</span>
@@ -1016,6 +1381,10 @@
                     <span class="stat-label">Temporairement indisponibles</span>
                 </div>
                 <div class="stat-item">
+                    <span class="stat-number warning" id="limitedMedicines">0</span>
+                    <span class="stat-label">Stock limité</span>
+                </div>
+                <div class="stat-item">
                     <span class="stat-number total" id="averagePrice">0 DH</span>
                     <span class="stat-label">Prix moyen</span>
                 </div>
@@ -1024,7 +1393,9 @@
 
         <!-- Loading -->
         <div id="loading" class="loading">
+            <div class="spinner"></div>
             <div>🔄 Chargement de notre catalogue de médicaments...</div>
+            <small>Connexion sécurisée à notre base de données</small>
         </div>
 
         <!-- Error -->
@@ -1041,41 +1412,53 @@
         <div class="footer-content">
             <div class="footer-section">
                 <h3>Pharmacie Ana</h3>
-                <p>Votre pharmacie de confiance depuis plus de 20 ans. Nous vous accompagnons dans tous vos besoins de santé avec professionnalisme et bienveillance.</p>
+                <p>Votre pharmacie de confiance depuis plus de 20 ans à Agadir. Nous vous accompagnons dans tous vos besoins de santé avec professionnalisme, expertise et bienveillance.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">📱</a>
+                    <a href="#" class="social-link">📧</a>
+                    <a href="#" class="social-link">🌐</a>
+                </div>
             </div>
             <div class="footer-section">
                 <h3>Nos Services</h3>
                 <a href="#">Médicaments sur ordonnance</a>
-                <a href="#">Parapharmacie</a>
-                <a href="#">Conseil pharmaceutique</a>
+                <a href="#">Parapharmacie et cosmétiques</a>
+                <a href="#">Conseil pharmaceutique personnalisé</a>
                 <a href="#">Livraison à domicile</a>
                 <a href="#">Téléconsultation</a>
+                <a href="#">Matériel médical certifié</a>
+                <a href="#">Aide aux malades</a>
             </div>
             <div class="footer-section">
                 <h3>Horaires d'ouverture</h3>
-                <p>Lundi - Vendredi: 8h - 22h</p>
-                <p>Samedi: 9h - 21h</p>
-                <p>Dimanche: 10h - 20h</p>
-                <p><strong>Service d'urgence 24h/24</strong></p>
+                <p>🕐 Lundi - Vendredi: 8h - 22h</p>
+                <p>🕐 Samedi: 9h - 21h</p>
+                <p>🕐 Dimanche: 10h - 20h</p>
+                <p><strong>⚡ Service d'urgence 24h/24</strong></p>
+                <p><em>Pharmacien de garde disponible</em></p>
             </div>
             <div class="footer-section">
-                <h3>Contact</h3>
-                <p>📍 123 Avenue Mohammed V<br>Agadir, Maroc</p>
+                <h3>Contact & Localisation</h3>
+                <p>📍 123 Avenue Mohammed V<br>Agadir 80000, Maroc</p>
                 <p>📞 +212 6 61 11 25 40</p>
+                <p>☎️ +212 5 28 84 XX XX (fixe)</p>
                 <p>✉️ contact@pharmacie-ana.ma</p>
                 <p>🌐 www.pharmacie-ana.ma</p>
+                <p><strong>🚗 Parking gratuit disponible</strong></p>
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 Pharmacie Ana. Tous droits réservés. | Établissement pharmaceutique agrégé</p>
+            <p>&copy; 2024 Pharmacie Ana. Tous droits réservés. | Établissement pharmaceutique agrégé N° AGR-XXXX | Pharmacien responsable: Dr. Ana XXXXXX</p>
         </div>
     </footer>
 
     <!-- Scroll to top button -->
-    <button class="scroll-top" id="scrollTop">↑</button>
+    <button class="scroll-top" id="scrollTop" title="Retour en haut">↑</button>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
 
     <!-- 🔐 CHARGEMENT SÉCURISÉ DE LA CONFIGURATION -->
-    <!-- Fonction de gestion d'erreur globale -->
     <script>
         // 🛡️ Fonction globale pour gérer l'absence de configuration
         function handleConfigError() {
@@ -1085,14 +1468,40 @@
                     <p>Le fichier <strong>firebase-config.js</strong> est manquant ou mal configuré.</p>
                     <p>Veuillez créer ce fichier avec vos clés Firebase avant d'utiliser l'application.</p>
                     <p><strong>Instructions :</strong></p>
-                    <ol style="text-align: left; margin-top: 1rem;">
+                    <ol style="text-align: left; margin-top: 1rem; max-width: 600px; margin-left: auto; margin-right: auto;">
                         <li>Créez un fichier nommé <strong>firebase-config.js</strong></li>
                         <li>Copiez-y vos clés Firebase</li>
+                        <li>Configurez les paramètres de votre pharmacie</li>
                         <li>Rechargez la page</li>
                     </ol>
-                    <p style="margin-top: 1rem;"><strong>Besoin d'aide ?</strong> Consultez le README-Sécurité.md</p>
+                    <p style="margin-top: 1rem;"><strong>Besoin d'aide ?</strong> Consultez la documentation technique</p>
                 </div>
             `;
+        }
+
+        // Utilitaires globaux
+        function showToast(message, type = 'info', duration = 3000) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, duration);
+        }
+
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fr-MA', {
+                style: 'currency',
+                currency: 'MAD',
+                minimumFractionDigits: 2
+            }).format(price).replace('MAD', 'DH');
+        }
+
+        function trackEvent(eventName, parameters = {}) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', eventName, parameters);
+            }
         }
     </script>
 
@@ -1114,7 +1523,8 @@
             collection, 
             getDocs, 
             query, 
-            orderBy 
+            orderBy,
+            where
         } from 'https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js';
 
         // Utiliser la configuration depuis le fichier externe sécurisé
@@ -1127,6 +1537,8 @@
 
         // Variables globales
         let allMedicines = [];
+        let filteredMedicines = [];
+        let isLoading = false;
 
         // Classe principale de l'application
         class ProfessionalPharmacy {
@@ -1135,19 +1547,59 @@
                 this.initEventListeners();
                 this.loadMedicines();
                 this.initScrollToTop();
+                this.initFilters();
+                
+                // Track page view
+                trackEvent('page_view', {
+                    page_title: 'Catalogue Médicaments',
+                    page_location: window.location.href
+                });
             }
 
             initEventListeners() {
-                // Recherche en temps réel
+                // Recherche en temps réel avec debounce
                 const searchInput = document.getElementById('searchInput');
+                let searchTimeout;
+                
                 searchInput.addEventListener('input', (e) => {
-                    this.searchMedicines(e.target.value);
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(() => {
+                        this.searchMedicines(e.target.value);
+                        
+                        // Track search
+                        if (e.target.value.length > 2) {
+                            trackEvent('search', {
+                                search_term: e.target.value
+                            });
+                        }
+                    }, 300);
                 });
 
                 searchInput.addEventListener('keypress', (e) => {
                     if (e.key === 'Enter') {
+                        clearTimeout(searchTimeout);
                         this.searchMedicines(e.target.value);
                     }
+                });
+
+                // Focus sur le champ de recherche avec raccourci clavier
+                document.addEventListener('keydown', (e) => {
+                    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                        e.preventDefault();
+                        searchInput.focus();
+                    }
+                });
+            }
+
+            initFilters() {
+                const availabilityFilter = document.getElementById('availabilityFilter');
+                const sortFilter = document.getElementById('sortFilter');
+                const priceFilter = document.getElementById('priceFilter');
+
+                [availabilityFilter, sortFilter, priceFilter].forEach(filter => {
+                    filter.addEventListener('change', () => {
+                        this.applyFilters();
+                    });
                 });
             }
 
@@ -1164,20 +1616,26 @@
 
                 scrollTop.addEventListener('click', () => {
                     window.scrollTo({ top: 0, behavior: 'smooth' });
+                    trackEvent('scroll_to_top');
                 });
             }
 
             async loadMedicines() {
+                if (isLoading) return;
+                
                 const loading = document.getElementById('loading');
                 const errorDiv = document.getElementById('error');
                 const container = document.getElementById('medicinesContainer');
                 const statsSection = document.getElementById('statsSection');
+                const filtersSection = document.getElementById('filtersSection');
 
                 try {
+                    isLoading = true;
                     loading.style.display = 'block';
                     errorDiv.style.display = 'none';
                     container.innerHTML = '';
                     statsSection.style.display = 'none';
+                    filtersSection.style.display = 'none';
                     
                     console.log('🔄 Chargement des médicaments...');
                     
@@ -1189,38 +1647,66 @@
                     
                     snapshot.forEach((doc) => {
                         const data = doc.data();
-                        allMedicines.push({
+                        const medicine = {
                             id: doc.id,
                             nom: data.nom || 'Médicament',
                             quantite: data.quantite || 0,
                             prixVente: data.prixVente || 0,
                             seuil: data.seuil || 5,
                             datePeremption: data.datePeremption || null,
+                            categorie: data.categorie || 'Médicament',
                             disponible: (data.quantite || 0) > 0,
                             stockLimite: (data.quantite || 0) > 0 && (data.quantite || 0) <= (data.seuil || 5)
-                        });
+                        };
+                        allMedicines.push(medicine);
                     });
 
                     console.log(`✅ ${allMedicines.length} médicaments chargés`);
                     
                     if (allMedicines.length === 0) {
-                        this.showError('🔍 Aucun médicament trouvé dans notre catalogue.');
+                        this.showError('🔍 Aucun médicament trouvé dans notre catalogue. Contactez-nous pour plus d\'informations.');
                         return;
                     }
                     
+                    filteredMedicines = [...allMedicines];
                     this.updateStats();
-                    this.displayMedicines(allMedicines);
+                    this.displayMedicines(filteredMedicines);
                     statsSection.style.display = 'block';
+                    filtersSection.style.display = 'block';
+                    
+                    showToast(`✅ ${allMedicines.length} médicaments chargés avec succès`, 'success');
+                    
+                    // Track successful load
+                    trackEvent('medicines_loaded', {
+                        count: allMedicines.length,
+                        available_count: allMedicines.filter(m => m.disponible).length
+                    });
                     
                 } catch (error) {
                     console.error('❌ Erreur:', error);
+                    
+                    let errorMessage = '';
                     if (error.code === 'permission-denied') {
-                        this.showError('🔒 Accès temporairement indisponible. Veuillez réessayer plus tard.');
+                        errorMessage = '🔒 Accès temporairement indisponible. Veuillez réessayer plus tard ou contactez-nous directement.';
+                    } else if (error.code === 'unavailable') {
+                        errorMessage = '🌐 Service temporairement indisponible. Vérifiez votre connexion internet.';
                     } else {
-                        this.showError(`❌ Erreur de connexion: ${error.message}`);
+                        errorMessage = `❌ Erreur de connexion: ${error.message}`;
                     }
+                    
+                    this.showError(errorMessage);
+                    showToast('❌ Erreur lors du chargement', 'error');
+                    
+                    // Track error
+                    trackEvent('error', {
+                        error_type: 'medicines_load_failed',
+                        error_code: error.code || 'unknown',
+                        error_message: error.message
+                    });
+                    
                 } finally {
                     loading.style.display = 'none';
+                    isLoading = false;
                 }
             }
 
@@ -1228,17 +1714,122 @@
                 const total = allMedicines.length;
                 const available = allMedicines.filter(med => med.disponible).length;
                 const unavailable = total - available;
+                const limited = allMedicines.filter(med => med.stockLimite).length;
                 
                 // Calculer le prix moyen des médicaments disponibles
                 const availableMeds = allMedicines.filter(med => med.disponible && med.prixVente > 0);
                 const averagePrice = availableMeds.length > 0 
-                    ? (availableMeds.reduce((sum, med) => sum + med.prixVente, 0) / availableMeds.length).toFixed(2)
+                    ? (availableMeds.reduce((sum, med) => sum + med.prixVente, 0) / availableMeds.length)
                     : 0;
 
-                document.getElementById('totalMedicines').textContent = total;
-                document.getElementById('availableMedicines').textContent = available;
-                document.getElementById('unavailableMedicines').textContent = unavailable;
-                document.getElementById('averagePrice').textContent = `${averagePrice} DH`;
+                // Animation des compteurs
+                this.animateCounter('totalMedicines', total);
+                this.animateCounter('availableMedicines', available);
+                this.animateCounter('unavailableMedicines', unavailable);
+                this.animateCounter('limitedMedicines', limited);
+                this.animateCounter('averagePrice', averagePrice, ' DH', 2);
+            }
+
+            animateCounter(elementId, targetValue, suffix = '', decimals = 0) {
+                const element = document.getElementById(elementId);
+                const startValue = 0;
+                const duration = 1000;
+                const increment = targetValue / (duration / 16);
+                let currentValue = startValue;
+
+                const timer = setInterval(() => {
+                    currentValue += increment;
+                    if (currentValue >= targetValue) {
+                        currentValue = targetValue;
+                        clearInterval(timer);
+                    }
+                    
+                    const displayValue = decimals > 0 ? currentValue.toFixed(decimals) : Math.floor(currentValue);
+                    element.textContent = displayValue + suffix;
+                }, 16);
+            }
+
+            applyFilters() {
+                const availabilityFilter = document.getElementById('availabilityFilter').value;
+                const sortFilter = document.getElementById('sortFilter').value;
+                const priceFilter = document.getElementById('priceFilter').value;
+                const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+                let filtered = [...allMedicines];
+
+                // Filtre de recherche
+                if (searchTerm) {
+                    filtered = filtered.filter(medicine =>
+                        medicine.nom.toLowerCase().includes(searchTerm)
+                    );
+                }
+
+                // Filtre de disponibilité
+                if (availabilityFilter !== 'all') {
+                    switch(availabilityFilter) {
+                        case 'available':
+                            filtered = filtered.filter(med => med.disponible && !med.stockLimite);
+                            break;
+                        case 'unavailable':
+                            filtered = filtered.filter(med => !med.disponible);
+                            break;
+                        case 'limited':
+                            filtered = filtered.filter(med => med.stockLimite);
+                            break;
+                    }
+                }
+
+                // Filtre de prix
+                if (priceFilter !== 'all') {
+                    const maxPrice = parseInt(priceFilter);
+                    filtered = filtered.filter(med => med.prixVente <= maxPrice && med.prixVente > 0);
+                }
+
+                // Tri
+                switch(sortFilter) {
+                    case 'name':
+                        filtered.sort((a, b) => a.nom.localeCompare(b.nom));
+                        break;
+                    case 'name-desc':
+                        filtered.sort((a, b) => b.nom.localeCompare(a.nom));
+                        break;
+                    case 'price':
+                        filtered.sort((a, b) => a.prixVente - b.prixVente);
+                        break;
+                    case 'price-desc':
+                        filtered.sort((a, b) => b.prixVente - a.prixVente);
+                        break;
+                    case 'availability':
+                        filtered.sort((a, b) => {
+                            if (a.disponible !== b.disponible) {
+                                return b.disponible - a.disponible;
+                            }
+                            return a.nom.localeCompare(b.nom);
+                        });
+                        break;
+                }
+
+                filteredMedicines = filtered;
+                this.displayMedicines(filteredMedicines);
+
+                // Track filter usage
+                trackEvent('filter_applied', {
+                    availability_filter: availabilityFilter,
+                    sort_filter: sortFilter,
+                    price_filter: priceFilter,
+                    results_count: filtered.length
+                });
+            }
+
+            searchMedicines(searchTerm) {
+                // Reset filters when searching
+                if (searchTerm) {
+                    document.getElementById('availabilityFilter').value = 'all';
+                    document.getElementById('sortFilter').value = 'availability';
+                    document.getElementById('priceFilter').value = 'all';
+                }
+                
+                this.applyFilters();
             }
 
             displayMedicines(medicines) {
@@ -1249,22 +1840,17 @@
                         <div class="no-results">
                             <div class="no-results-icon">🔍</div>
                             <h3>Aucun médicament trouvé</h3>
-                            <p>Essayez une autre recherche ou contactez-nous directement</p>
+                            <p>Aucun résultat ne correspond à vos critères de recherche</p>
+                            <button class="retry-button" onclick="clearFilters()">
+                                Voir tous les médicaments
+                            </button>
                         </div>
                     `;
                     return;
                 }
 
-                // Trier par disponibilité puis par nom
-                const sortedMedicines = [...medicines].sort((a, b) => {
-                    if (a.disponible !== b.disponible) {
-                        return b.disponible - a.disponible;
-                    }
-                    return a.nom.localeCompare(b.nom);
-                });
-
-                container.innerHTML = sortedMedicines.map((medicine, index) => {
-                    const animationDelay = (index * 0.05).toFixed(2);
+                container.innerHTML = medicines.map((medicine, index) => {
+                    const animationDelay = Math.min(index * 0.05, 1);
                     return this.createMedicineCard(medicine, animationDelay);
                 }).join('');
             }
@@ -1289,7 +1875,7 @@
                     }
                 }
                 
-                const displayPrice = medicine.prixVente > 0 ? `${medicine.prixVente.toFixed(2)} DH` : 'Prix sur demande';
+                const displayPrice = medicine.prixVente > 0 ? formatPrice(medicine.prixVente) : 'Prix sur demande';
                 
                 return `
                     <div class="medicine-card ${statusClass}" style="animation-delay: ${animationDelay}s">
@@ -1297,7 +1883,7 @@
                             <div class="medicine-icon">💊</div>
                             <div class="medicine-info">
                                 <div class="medicine-name">${medicine.nom}</div>
-                                <div class="medicine-category">Médicament</div>
+                                <div class="medicine-category">${medicine.categorie || 'Médicament'}</div>
                             </div>
                         </div>
                         
@@ -1314,23 +1900,25 @@
                             </div>
                         </div>
                         
+
+                        
                         ${isExpiringSoon ? `
                             <div class="expiry-warning">
-                                ⚠️ Disponibilité limitée dans le temps
+                                ⚠️ Disponibilité limitée dans le temps - Expiration proche
                             </div>
                         ` : ''}
                         
                         <div class="action-buttons">
                             <button 
                                 class="btn primary" 
-                                onclick="requestInfo('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}')"
+                                onclick="requestInfo('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}', '${statusText}')"
                             >
                                 <span>ℹ️</span>
                                 <span>Demander infos</span>
                             </button>
                             <button 
                                 class="btn whatsapp" 
-                                onclick="contactWhatsApp('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}')"
+                                onclick="contactWhatsApp('${medicine.nom.replace(/'/g, "\\'")}', '${displayPrice}', ${medicine.disponible})"
                                 ${!medicine.disponible ? 'disabled' : ''}
                             >
                                 <span>📱</span>
@@ -1341,32 +1929,29 @@
                 `;
             }
 
-            searchMedicines(searchTerm) {
-                if (!searchTerm.trim()) {
-                    this.displayMedicines(allMedicines);
-                    return;
-                }
-
-                const filtered = allMedicines.filter(medicine =>
-                    medicine.nom.toLowerCase().includes(searchTerm.toLowerCase())
-                );
-                
-                this.displayMedicines(filtered);
-            }
-
             showError(message) {
                 const errorDiv = document.getElementById('error');
-                errorDiv.innerHTML = message;
+                errorDiv.innerHTML = `
+                    <div style="text-align: center;">
+                        <h3 style="margin-bottom: 1rem;">⚠️ Problème de connexion</h3>
+                        <p>${message}</p>
+                        <button class="retry-button" onclick="location.reload()" style="margin-top: 1rem;">
+                            🔄 Réessayer
+                        </button>
+                    </div>
+                `;
                 errorDiv.style.display = 'block';
             }
         }
 
-        // Fonctions pour la section produits
+        // Fonctions globales pour la section produits
         window.scrollToMedicines = function() {
             document.querySelector('.hero').scrollIntoView({ 
                 behavior: 'smooth',
                 block: 'start'
             });
+            
+            trackEvent('scroll_to_medicines');
         };
 
         window.contactForParapharmacie = function() {
@@ -1380,21 +1965,24 @@ Pourriez-vous me renseigner sur :
 - 🧴 Produits cosmétiques et soins de la peau
 - 🧼 Produits d'hygiène familiale  
 - 💊 Compléments alimentaires
+- 🌿 Produits bio et naturels
 - 💰 Gammes de prix disponibles
-- 📋 Conseils personnalisés
+- 📋 Conseils personnalisés selon mes besoins
 
-Merci d'avance pour votre réponse.
+Merci d'avance pour votre réponse rapide.
 
 Cordialement.`;
 
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            trackEvent('contact_parapharmacie');
         };
 
         window.contactForMedicalDevices = function() {
             const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
-Je souhaiterais me renseigner sur votre matériel médical.
+Je souhaiterais me renseigner sur votre matériel médical certifié.
 
 🩺 **Demande d'informations - Matériel médical**
 
@@ -1402,15 +1990,19 @@ Pourriez-vous me renseigner sur :
 - 🩺 Tensiomètres et thermomètres
 - 🏥 Matériel de premiers secours
 - 🩹 Orthèses et bandages
+- 📊 Équipements de diagnostic
 - 💰 Prix et disponibilité
-- 📋 Conseils d'utilisation
+- 📋 Conseils d'utilisation et formation
+- 🛡️ Garanties et service après-vente
 
-Je cherche du matériel de qualité pour usage personnel/familial.
+Je recherche du matériel de qualité professionnelle pour usage personnel/familial.
 
 Cordialement.`;
 
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            trackEvent('contact_medical_devices');
         };
 
         window.contactForMobilityAids = function() {
@@ -1424,66 +2016,144 @@ Pourriez-vous me renseigner sur :
 - 🦯 Cannes et déambulateurs
 - ♿ Fauteuils roulants et accessoires
 - 🏥 Matériel de rééducation
+- 🏠 Aide au maintien à domicile
 - 💰 Options de financement/location
-- 🤝 Conseils personnalisés selon les besoins
+- 🤝 Conseils personnalisés selon les besoins spécifiques
+- 📋 Évaluation des besoins à domicile
 
-Une situation nécessite une solution adaptée.
+Une situation particulière nécessite une solution adaptée et professionnelle.
 
 Cordialement.`;
 
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            trackEvent('contact_mobility_aids');
         };
 
         // Fonctions globales pour les médicaments
-        window.requestInfo = function(medicineName, price) {
+        window.requestInfo = function(medicineName, price, status) {
             const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
-Je souhaiterais obtenir des informations sur le médicament suivant :
+Je souhaiterais obtenir des informations détaillées sur le médicament suivant :
 
 💊 **${medicineName}**
 💰 **Prix affiché : ${price}**
+📊 **Statut : ${status}**
 
 Pourriez-vous me renseigner sur :
-- ✅ Sa disponibilité actuelle
+- ✅ Sa disponibilité actuelle et quantité en stock
 - 📋 Les modalités de délivrance (ordonnance requise ?)
 - ⏰ Les délais si commande nécessaire
-- 🏪 Modalités de retrait
+- 🏪 Modalités de retrait en pharmacie
+- 💊 Informations sur le médicament (posologie, effets...)
+- 🔄 Alternatives disponibles si non disponible
 
-Merci d'avance pour votre réponse.
+Merci d'avance pour votre réponse rapide et professionnelle.
 
 Cordialement.`;
 
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            trackEvent('request_medicine_info', {
+                medicine_name: medicineName,
+                price: price,
+                status: status
+            });
         };
 
-        window.contactWhatsApp = function(medicineName, price) {
-            const message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
+        window.contactWhatsApp = function(medicineName, price, isAvailable) {
+            let message;
+            
+            if (isAvailable) {
+                message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
 
 Je souhaiterais réserver le médicament suivant :
 
 💊 **${medicineName}**
 💰 **Prix : ${price}**
+✅ **Statut : Disponible**
 
 Merci de me confirmer :
 - ✅ Disponibilité immédiate
-- 🏪 Modalités de retrait
-- ⏰ Heure de disponibilité
-- 📋 Documents nécessaires
+- 🏪 Modalités de retrait en pharmacie
+- ⏰ Heure de disponibilité pour le retrait
+- 📋 Documents nécessaires à apporter
+- 🚗 Accès parking et localisation
 
-Je me présenterai en pharmacie pour le retrait.
+Je me présenterai en pharmacie pour le retrait dans les meilleurs délais.
 
 Cordialement.`;
+            } else {
+                message = `Bonjour ${PHARMACY_CONFIG.pharmacyName},
+
+Je suis intéressé(e) par le médicament suivant actuellement non disponible :
+
+💊 **${medicineName}**
+💰 **Prix : ${price}**
+❌ **Statut : Non disponible**
+
+Pourriez-vous me renseigner sur :
+- ⏰ Date de réapprovisionnement prévue
+- 🔄 Possibilité de commande spéciale
+- 💊 Alternatives disponibles
+- 📞 Notification dès disponibilité
+
+Merci de me tenir informé(e).
+
+Cordialement.`;
+            }
 
             const whatsappUrl = `https://wa.me/${PHARMACY_CONFIG.phoneNumber}?text=${encodeURIComponent(message)}`;
             window.open(whatsappUrl, '_blank');
+            
+            trackEvent('contact_whatsapp', {
+                medicine_name: medicineName,
+                price: price,
+                is_available: isAvailable
+            });
+        };
+
+        // Fonction pour effacer les filtres
+        window.clearFilters = function() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('availabilityFilter').value = 'all';
+            document.getElementById('sortFilter').value = 'availability';
+            document.getElementById('priceFilter').value = 'all';
+            
+            // Réappliquer les filtres (va afficher tous les médicaments)
+            if (window.pharmacyApp) {
+                window.pharmacyApp.applyFilters();
+            }
+            
+            showToast('🔄 Filtres réinitialisés', 'info');
+            trackEvent('filters_cleared');
         };
 
         // Initialiser l'application quand le DOM est prêt
         document.addEventListener('DOMContentLoaded', () => {
             console.log('🚀 Pharmacie Ana - Site professionnel sécurisé initialisé');
-            new ProfessionalPharmacy();
+            window.pharmacyApp = new ProfessionalPharmacy();
+            
+            // Ajouter des raccourcis clavier utiles
+            document.addEventListener('keydown', (e) => {
+                // Escape pour effacer la recherche
+                if (e.key === 'Escape') {
+                    document.getElementById('searchInput').value = '';
+                    if (window.pharmacyApp) {
+                        window.pharmacyApp.searchMedicines('');
+                    }
+                }
+                
+                // F5 pour recharger les données
+                if (e.key === 'F5' && e.ctrlKey) {
+                    e.preventDefault();
+                    if (window.pharmacyApp) {
+                        window.pharmacyApp.loadMedicines();
+                    }
+                }
+            });
         });
 
     </script>
